@@ -4,6 +4,7 @@
 #include <unordered_map>
 #include <numeric>
 #include "..\hpp\macros\strings.h"
+#include "..\hpp\macros\array.h"
 
 
 namespace vader {

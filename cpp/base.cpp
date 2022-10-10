@@ -1,5 +1,6 @@
 #include "..\hpp\base.h"
 #include "..\hpp\macros\strings.h"
+#include "..\hpp\macros\array.h"
 
 
 namespace vader {
