@@ -5,7 +5,7 @@
 </p>
 
 ### Quick Start
-***C++*** port of ***Python NLTK Vader Sentiment Analyzer***. The workflow used is a *faster* variation of the original library which reproduce seemingly results. 
+***C++*** port of ***Python NLTK Vader Sentiment Analyzer***. The workflow uses a *faster* variation of the original library which reproduce seemingly results. 
 
 ### Approach
 An example of usage of the function `vader::eval`, using the data provided in the resources folder **resources**,
