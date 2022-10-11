@@ -1,7 +1,7 @@
 ## Light-Vader (C++)
 
 <p align="center">
-  <img src="https://i.imgur.com/9F3YLKT.png" width=180 />
+  <img src="https://i.imgur.com/aetVBZr.png" width=140 />
 </p>
 
 ### Quick Start
