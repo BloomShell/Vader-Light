@@ -1,9 +1,4 @@
 ## Light-Vader (C++)
-
-<p align="center">
-  <img src="https://i.imgur.com/aetVBZr.png" width=140 />
-</p>
-
 ### Quick Start
 ***C++*** port of ***Python NLTK Vader Sentiment Analyzer***. The workflow used is a *faster* variation of the original library which reproduce seemingly results. 
 
