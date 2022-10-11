@@ -1,13 +1,15 @@
 #include "..\hpp\base.h"
 #include "..\hpp\macros\strings.h"
 #include "..\hpp\macros\array.h"
+#include <iostream>
 
 
 namespace vader {
 
-	float eval(
+	std::unordered_map<std::string, float> eval(
 		std::string& txt,
-		const std::unordered_map<std::string, float>& lexicals
+		const std::unordered_map<std::string, float>& lexicals,
+		float alpha
 	) {
 		scrubstr(txt);
 		auto tokens = tokenize(txt);
@@ -50,7 +52,29 @@ namespace vader {
 			if (valences[i] != 0) 
 				final[i] = valences[i] * negations[i] * 
 				decrements[i] * increments[i];
+			
+		float sum = std::accumulate(final.begin(), final.end(), 0.0f);
+
+		// Compound Normalized score;
+		float compound = 0.0f;
+		float norms = sum / sqrt((sum * sum) + alpha);
+		if (norms > 1.0f) compound = 1.0;
+		else if (norms < -1.0f) compound = -1.0f;
+		else compound = norms;
 		
-		return std::accumulate(final.begin(), final.end(), 0.0f);
+		float neg = 0.0f, pos = 0.0f, score = 0.0f;
+		int neu = 0;
+		for (auto& valence : final) {
+			if (valence > 0.0f) pos += valence + 1.0f;
+			else if (valence < 0.0f) neg += valence - 1.0f;
+			else neu += 1;
+		}
+
+		float total = pos + fabs(neg) + neu;
+		return {
+			{"negative", fabs(neg / total)}, {"positive", fabs(pos / total)},
+			{"neutral", fabs(neu / total)}, {"compound", compound}
+		};
+
 	};
 }

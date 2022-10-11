@@ -59,8 +59,9 @@ namespace vader {
 	}
 
 
-	float eval(
+	std::unordered_map<std::string, float> eval(
 		std::string& txt,
-		const std::unordered_map<std::string, float>& lexicals
+		const std::unordered_map<std::string, float>& lexicals,
+		float alpha = 15.0f
 	);
 }
