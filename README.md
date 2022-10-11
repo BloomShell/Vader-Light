@@ -51,6 +51,7 @@ struct Review {
 Then storing *reviews* data into a `std::vector<Review>`,
 ```c++
 // Opening the reviews.csv;
+std::vector<Review> revs;
 std::ifstream file("resources/reviews.csv");
 	if (file) {
 		std::string line;
