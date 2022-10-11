@@ -14,17 +14,17 @@ An example of usage of the function `vader::eval`, using the data provided in th
 std::ifstream lexicon("resources/lexicon.txt");
 std::unordered_map<std::string, float> lexicals;
 if (lexicon) {
-std::string line;
-while (std::getline(lexicon, line)) {
-	uint16_t pos = 0, last = 0;
-	pos = line.find("\t", last);
-	std::string word = line.substr(last, pos - last);
-	last = pos + 1;
-	pos = line.find("\t", last);
-	float val = std::stof(line.substr(last, pos - last));
-	lexicals[word] = val;
-}
-lexicon.close();
+	std::string line;
+	while (std::getline(lexicon, line)) {
+		uint16_t pos = 0, last = 0;
+		pos = line.find("\t", last);
+		std::string word = line.substr(last, pos - last);
+		last = pos + 1;
+		pos = line.find("\t", last);
+		float val = std::stof(line.substr(last, pos - last));
+		lexicals[word] = val;
+	}
+	lexicon.close();
 }
 else throw std::runtime_error(
 	"[Vader](ERROR) Cannot open lexicon.txt");
@@ -53,26 +53,26 @@ Then storing *reviews* data into a `std::vector<Review>`,
 // Opening the reviews.csv;
 std::vector<Review> revs;
 std::ifstream file("resources/reviews.csv");
-	if (file) {
-		std::string line;
-		std::getline(file, line);
-		while (std::getline(file, line)) {
-			uint16_t pos = 0, last = 0;
-			pos = line.find(',', last);
-			uint32_t id = std::stoi(line.substr(last, pos - last));
-			last = pos + 1;
-			pos = line.find(',', last);
-			uint16_t rating = std::stoi(line.substr(last, pos - last));
-			last = pos + 1;
-			revs.emplace_back(
-				std::move(rating),
-				std::move(id),
-				std::move(line.substr(last, pos - last))
-			);
-		}
+if (file) {
+	std::string line;
+	std::getline(file, line);
+	while (std::getline(file, line)) {
+		uint16_t pos = 0, last = 0;
+		pos = line.find(',', last);
+		uint32_t id = std::stoi(line.substr(last, pos - last));
+		last = pos + 1;
+		pos = line.find(',', last);
+		uint16_t rating = std::stoi(line.substr(last, pos - last));
+		last = pos + 1;
+		revs.emplace_back(
+			std::move(rating),
+			std::move(id),
+			std::move(line.substr(last, pos - last))
+		);
 	}
-	else throw std::runtime_error(
-		"[Vader](ERROR) Cannot open reviews.csv");
+}
+else throw std::runtime_error(
+	"[Vader](ERROR) Cannot open reviews.csv");
 ```
 
 Then in order to evaluate the first review with ***Vader***,
